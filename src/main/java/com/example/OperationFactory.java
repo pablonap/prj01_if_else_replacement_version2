@@ -1,16 +1,12 @@
 package com.example;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class OperationFactory {
-    static Map<Double, Operation> operationMap = new HashMap<>();
-
-    static {
-        operationMap.put(6.0, new ValueSix());
-        operationMap.put(7.0, new ValueSeven());
-    }
+    private final static Map<Double, Operation> operationMap = Map.of(
+            OperationType.VALUE_SIX.getValue(), new ValueSix(),
+            OperationType.VALUE_SEVEN.getValue(), new ValueSeven());
 
     public static Optional<Operation> getOperation(Cart cart) {
         return Optional.ofNullable(operationMap.get(cart.value()));
